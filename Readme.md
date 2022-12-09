@@ -10,3 +10,5 @@
 
 #### Simple
 - Pick
+- ReadOnly
+- TupleToObject
