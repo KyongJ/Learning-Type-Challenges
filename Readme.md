@@ -14,3 +14,5 @@
 - TupleToObject
 - First
 - Tuple-Length
+- First
+- Awaited
