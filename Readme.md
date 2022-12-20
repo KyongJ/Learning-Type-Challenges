@@ -8,7 +8,7 @@
 
 ### 已完成
 
-#### Simple
+#### Easy
 - Pick
 - ReadOnly
 - TupleToObject
@@ -16,3 +16,11 @@
 - Tuple-Length
 - First
 - Awaited
+- Concat
+- Exclude
+- Unshift
+- Push
+- Paraneters
+
+#### Middle
+- Return-Type
