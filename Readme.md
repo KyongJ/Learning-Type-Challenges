@@ -24,3 +24,4 @@
 
 #### Middle
 - Return-Type
+- Omit
