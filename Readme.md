@@ -25,3 +25,7 @@
 #### Middle
 - Return-Type
 - Omit
+- ReadOnly2
+- DeepReadOnly
+- TupleToUnion
+- ChainableOption
