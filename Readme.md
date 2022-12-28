@@ -29,3 +29,5 @@
 - DeepReadOnly
 - TupleToUnion
 - ChainableOption
+- Pop
+- Last
