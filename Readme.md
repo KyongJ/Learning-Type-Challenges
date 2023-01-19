@@ -32,3 +32,4 @@
 - Pop
 - Last
 - 62-LookUp
+- 106-TrimLeft
