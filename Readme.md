@@ -33,3 +33,4 @@
 - Last
 - 62-LookUp
 - 106-TrimLeft
+- 108-Trim
