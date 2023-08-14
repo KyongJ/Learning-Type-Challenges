@@ -1,1 +1,1 @@
-type First<T extends any[]> = T extends [infer X, ...infer Rest] ? X : never;
+type MyFirst<T extends Array<unknown>> = T extends [infer X, ...infer Rest] ? X : never;
