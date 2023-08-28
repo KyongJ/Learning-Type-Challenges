@@ -1,15 +1,15 @@
 import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
-    Expect<Equal<First<[3, 2, 1]>, 3>>,
-    Expect<Equal<First<[() => 123, { a: string }]>, () => 123>>,
-    Expect<Equal<First<[]>, never>>,
-    Expect<Equal<First<[undefined]>, undefined>>
+    Expect<Equal<MyFirst<[3, 2, 1]>, 3>>,
+    Expect<Equal<MyFirst<[() => 123, { a: string }]>, () => 123>>,
+    Expect<Equal<MyFirst<[]>, never>>,
+    Expect<Equal<MyFirst<[undefined]>, undefined>>
 ];
 
 type errors = [
     // @ts-expect-error
-    First<'notArray'>,
+    MyFirst<'notArray'>,
     // @ts-expect-error
-    First<{ 0: 'arrayLike' }>
+    MyFirst<{ 0: 'arrayLike' }>
 ];
