@@ -31,16 +31,18 @@
 
 /* _____________ 你的代码 _____________ */
 
-type MyPick<T, K> = any
+type MyPick1<T, K extends keyof T> = {
+  [P in K]:T[P]
+}
 
 /* _____________ 测试用例 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
 
 type cases = [
-  Expect<Equal<Expected1, MyPick<Todo, 'title'>>>,
-  Expect<Equal<Expected2, MyPick<Todo, 'title' | 'completed'>>>,
+  Expect<Equal<Expected1, MyPick1<Todo, 'title'>>>,
+  Expect<Equal<Expected2, MyPick1<Todo, 'title' | 'completed'>>>,
   // @ts-expect-error
-  MyPick<Todo, 'title' | 'completed' | 'invalid'>,
+  MyPick1<Todo, 'title' | 'completed' | 'invalid'>,
 ]
 
 interface Todo {
