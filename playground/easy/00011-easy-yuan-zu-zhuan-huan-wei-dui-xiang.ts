@@ -20,7 +20,9 @@
 
 /* _____________ 你的代码 _____________ */
 
-type TupleToObject<T extends readonly any[]> = any
+type TupleToObject1<T extends readonly any[]> = {
+  [P in T[number]]:P
+}
 
 /* _____________ 测试用例 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
@@ -33,10 +35,10 @@ const tupleSymbol = [sym1, sym2] as const
 const tupleMix = [1, '2', 3, '4', sym1] as const
 
 type cases = [
-  Expect<Equal<TupleToObject<typeof tuple>, { 'tesla': 'tesla', 'model 3': 'model 3', 'model X': 'model X', 'model Y': 'model Y' }>>,
-  Expect<Equal<TupleToObject<typeof tupleNumber>, { 1: 1, 2: 2, 3: 3, 4: 4 }>>,
-  Expect<Equal<TupleToObject<typeof tupleSymbol>, { [sym1]: typeof sym1, [sym2]: typeof sym2 }>>,
-  Expect<Equal<TupleToObject<typeof tupleMix>, { 1: 1, '2': '2', 3: 3, '4': '4', [sym1]: typeof sym1 }>>,
+  Expect<Equal<TupleToObject1<typeof tuple>, { 'tesla': 'tesla', 'model 3': 'model 3', 'model X': 'model X', 'model Y': 'model Y' }>>,
+  Expect<Equal<TupleToObject1<typeof tupleNumber>, { 1: 1, 2: 2, 3: 3, 4: 4 }>>,
+  Expect<Equal<TupleToObject1<typeof tupleSymbol>, { [sym1]: typeof sym1, [sym2]: typeof sym2 }>>,
+  Expect<Equal<TupleToObject1<typeof tupleMix>, { 1: 1, '2': '2', 3: 3, '4': '4', [sym1]: typeof sym1 }>>,
 ]
 
 // @ts-expect-error

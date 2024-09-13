@@ -22,24 +22,24 @@
 
 /* _____________ 你的代码 _____________ */
 
-type First<T extends any[]> = any
+type First1<T extends Array<any>> = T extends [infer x, ...infer rest] ? x : never;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
-  Expect<Equal<First<[3, 2, 1]>, 3>>,
-  Expect<Equal<First<[() => 123, { a: string }]>, () => 123>>,
-  Expect<Equal<First<[]>, never>>,
-  Expect<Equal<First<[undefined]>, undefined>>,
-]
+    Expect<Equal<First1<[3, 2, 1]>, 3>>,
+    Expect<Equal<First1<[() => 123, { a: string }]>, () => 123>>,
+    Expect<Equal<First1<[]>, never>>,
+    Expect<Equal<First1<[undefined]>, undefined>>
+];
 
 type errors = [
-  // @ts-expect-error
-  First<'notArray'>,
-  // @ts-expect-error
-  First<{ 0: 'arrayLike' }>,
-]
+    // @ts-expect-error
+    First<'notArray'>,
+    // @ts-expect-error
+    First<{ 0: 'arrayLike' }>
+];
 
 /* _____________ 下一步 _____________ */
 /*

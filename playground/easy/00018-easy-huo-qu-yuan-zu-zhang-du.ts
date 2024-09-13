@@ -22,7 +22,7 @@
 
 /* _____________ 你的代码 _____________ */
 
-type Length<T> = any
+type Length1<T extends readonly PropertyKey[]> = T['length']
 
 /* _____________ 测试用例 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
@@ -31,8 +31,8 @@ const tesla = ['tesla', 'model 3', 'model X', 'model Y'] as const
 const spaceX = ['FALCON 9', 'FALCON HEAVY', 'DRAGON', 'STARSHIP', 'HUMAN SPACEFLIGHT'] as const
 
 type cases = [
-  Expect<Equal<Length<typeof tesla>, 4>>,
-  Expect<Equal<Length<typeof spaceX>, 5>>,
+  Expect<Equal<Length1<typeof tesla>, 4>>,
+  Expect<Equal<Length1<typeof spaceX>, 5>>,
   // @ts-expect-error
   Length<5>,
   // @ts-expect-error

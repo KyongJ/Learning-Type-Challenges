@@ -20,16 +20,16 @@
 
 /* _____________ 你的代码 _____________ */
 
-type MyExclude<T, U> = any
+type MyExclude1<T, U> = T extends U ? never : T;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
-  Expect<Equal<MyExclude<'a' | 'b' | 'c', 'a'>, 'b' | 'c'>>,
-  Expect<Equal<MyExclude<'a' | 'b' | 'c', 'a' | 'b'>, 'c'>>,
-  Expect<Equal<MyExclude<string | number | (() => void), Function>, string | number>>,
-]
+    Expect<Equal<MyExclude1<'a' | 'b' | 'c', 'a'>, 'b' | 'c'>>,
+    Expect<Equal<MyExclude1<'a' | 'b' | 'c', 'a' | 'b'>, 'c'>>,
+    Expect<Equal<MyExclude1<string | number | (() => void), Function>, string | number>>
+];
 
 /* _____________ 下一步 _____________ */
 /*
