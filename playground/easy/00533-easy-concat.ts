@@ -18,7 +18,7 @@
 
 /* _____________ 你的代码 _____________ */
 
-type Concat<T, U> = any
+type Concat1<T extends readonly any[], U extends readonly any[]> = [...T,...U]
 
 /* _____________ 测试用例 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
@@ -26,15 +26,15 @@ import type { Equal, Expect } from '@type-challenges/utils'
 const tuple = [1] as const
 
 type cases = [
-  Expect<Equal<Concat<[], []>, []>>,
-  Expect<Equal<Concat<[], [1]>, [1]>>,
-  Expect<Equal<Concat<typeof tuple, typeof tuple>, [1, 1]>>,
-  Expect<Equal<Concat<[1, 2], [3, 4]>, [1, 2, 3, 4]>>,
-  Expect<Equal<Concat<['1', 2, '3'], [false, boolean, '4']>, ['1', 2, '3', false, boolean, '4']>>,
+  Expect<Equal<Concat1<[], []>, []>>,
+  Expect<Equal<Concat1<[], [1]>, [1]>>,
+  Expect<Equal<Concat1<typeof tuple, typeof tuple>, [1, 1]>>,
+  Expect<Equal<Concat1<[1, 2], [3, 4]>, [1, 2, 3, 4]>>,
+  Expect<Equal<Concat1<['1', 2, '3'], [false, boolean, '4']>, ['1', 2, '3', false, boolean, '4']>>,
 ]
 
 // @ts-expect-error
-type error = Concat<null, undefined>
+type error = Concat1<null, undefined>
 
 /* _____________ 下一步 _____________ */
 /*
