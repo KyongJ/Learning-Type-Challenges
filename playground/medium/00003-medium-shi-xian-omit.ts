@@ -30,43 +30,45 @@
 
 /* _____________ 你的代码 _____________ */
 
-type MyOmit<T, K> = any
+type MyOmit1<T, K extends keyof T> = {
+    [P in keyof T as P extends K ? never : P]: T[P];
+};
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
-  Expect<Equal<Expected1, MyOmit<Todo, 'description'>>>,
-  Expect<Equal<Expected2, MyOmit<Todo, 'description' | 'completed'>>>,
-  Expect<Equal<Expected3, MyOmit<Todo1, 'description' | 'completed'>>>,
-]
+    Expect<Equal<Expected1, MyOmit1<Todo, 'description'>>>,
+    Expect<Equal<Expected2, MyOmit1<Todo, 'description' | 'completed'>>>,
+    Expect<Equal<Expected3, MyOmit1<Todo1, 'description' | 'completed'>>>
+];
 
 // @ts-expect-error
-type error = MyOmit<Todo, 'description' | 'invalid'>
+type error = MyOmit1<Todo, 'description' | 'invalid'>;
 
 interface Todo {
-  title: string
-  description: string
-  completed: boolean
+    title: string;
+    description: string;
+    completed: boolean;
 }
 
 interface Todo1 {
-  readonly title: string
-  description: string
-  completed: boolean
+    readonly title: string;
+    description: string;
+    completed: boolean;
 }
 
 interface Expected1 {
-  title: string
-  completed: boolean
+    title: string;
+    completed: boolean;
 }
 
 interface Expected2 {
-  title: string
+    title: string;
 }
 
 interface Expected3 {
-  readonly title: string
+    readonly title: string;
 }
 
 /* _____________ 下一步 _____________ */
